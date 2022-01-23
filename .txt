@@ -1,0 +1,13 @@
+k port-forward kubia-manual 8080:8080
+
+kubectl create -f kubia-manual.yaml -n lakdav
+
+kubectl delete rc kubia --cascade=false
+
+kind create cluster --config kind-tree-node.yaml
+
+$ openssl genrsa -out https.key 2048
+$ openssl req -new -x509 -key https.key -out https.cert -days 3650 -subj
+/CN=www.kubia-example.com
+
+# export CURL_CA_BUNDLE=run/secrets/kubernetes.io/serviceaccount/ca.cr
